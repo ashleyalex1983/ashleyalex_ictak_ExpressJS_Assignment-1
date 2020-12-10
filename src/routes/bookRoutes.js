@@ -59,7 +59,7 @@ function router(nav){
             title: 'Wings Of Fire',
             author: 'A. P. J. Abdul Kalam',
             genre: 'Autobiography',
-            img: 'WingsOfFire.jpg'
+            img: 'WingsofFire.jpg'
         },
         {
             title: 'The Alchemist',
