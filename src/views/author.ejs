@@ -24,7 +24,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">Home</a>
+      <a href="<%=user_link%>" class="navbar-brand">
+        <%if(user_link === '/admin') {%>
+          Admin-HOME
+         <%} else {%> Reader-HOME 
+          <%}%>
+      </a>
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <%for(i=0;i<nav.length;i++){%>
@@ -90,14 +95,14 @@
           <div class="row">    
             <br>
             <div class="col-md-2 col-sm-3 text-center">
-              <a class="story-title" href="#"><img alt="" src="/images/authors/<%=author.img%>" style="width:150px;height:150px" class="img-circle"></a>
+              <a class="story-title" href="#"><img alt="" src="data:image/<%=author.author_image.contentType%>;base64,<%=author.author_image.data.toString('base64')%>" style="width:150px;height:150px" class="img-circle"></a>
             </div>
             <div class="col-md-10 col-sm-9">
-              <h3><%=author.name%></h3>
+              <h3><%=author.author_name%></h3>
               <div class="row">
                 <div class="col-xs-9">
-                  <h4><span class="label label-default"><%=author.nationality%>   |  DOB : <%=author.dob%></span></h4><h4>
-                  <small style="font-family:courier,'new courier';" class="text-muted"><%=author.genre%>  </small>
+                  <h4><span class="label label-default"><%=author.author_nationality%>   |  DOB : <%=author.author_dob%></span></h4><h4>
+                  <small style="font-family:courier,'new courier';" class="text-muted"><%=author.author_genre%>  </small>
                   </h4></div>
                 <div class="col-xs-3"></div>
               </div>
@@ -105,10 +110,26 @@
             </div>
           </div>
           <hr>
+          <div class="row">
+            <div class="col-md-2">
+              <%if(user_link === '/admin') {%>
+                <button class="btn btn-warning edit-author"  href="#" id="<%=author._id%>">EDIT THIS AUTHOR</button>
+              <%}%>          
+            </div>
+            <div class="col-md-2">
+              <%if(user_link === '/admin') {%>
+                <button class="btn btn-danger delete-author" href="#" id="<%=author._id%>">DELETE THIS AUTHOR</button>
+              <%}%>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+          </div>
           <!--/stories-->
           
           
-          <a href="/authors" class="btn btn-primary pull-right btnNext">List All Authors <i class="glyphicon icon-chevron-right"></i></a>
+          <a href="<%=user_link%>/authors" class="btn btn-primary pull-right btnNext" style="font-size: large;">List All Authors <i class="glyphicon icon-chevron-right"></i></a>
         
           
         </div>
@@ -162,6 +183,7 @@
 </footer>
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/author_main.js"></script>
 	</body>
 </html>

@@ -12,7 +12,8 @@
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/validate_login.js"></script>
 	</head>
 	<body  style="background-color: rgba(143, 177, 252, 0.8);">
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
@@ -47,21 +48,28 @@
       <div class="form-panel" style="width: fit-content;">
         <div class="box">
           <h2>User Login </h2><hr>
-          <form  id="loginform" action="/loggedin" method="POST">
+          <% if(typeof err != 'undefined'){%>
+            <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong><%= err %></strong> 
+            </div>
+          <%}%>
+          <!-- <form  id="loginform" action="/login" method="POST" onsubmit="return validate_login();" > -->
+          <form  id="loginform" action="/login" method="POST" >  
             <br>
             <div class="form_control">
-                <input type="text" name="username" id="username" placeholder="Enter Username" autocomplete="off" autofocus="on" >
-                <p>Error message</p>
+                <input type="text" name="username" id="username" placeholder="Enter Email" autocomplete="off" autofocus="on" required>
+                <!-- <p>Error message</p> -->
             </div>
             <!-- <hr> -->
             <div class="form_control">
-                <input type="password" name="password" id="password" placeholder="Enter Password" >
-                <p>Error message</p>
+                <input type="password" name="password" id="password" placeholder="Enter Password" required>
+                <!-- <p>Error message</p> -->
             </div>
             <!-- <br> -->
-            <button type="submit">Login</button>
+            <button id="submit-button" type="submit"  >Login</button>
             <br>
-            <label><a class="login-link" href="/signup" > Click here</a>  to create an account.</label>
+            <label><a class="signup-link" href="/signup" > Click here</a>  to create an account.</label>
           </form>
         </div>
       </div>
@@ -83,7 +91,6 @@
 	   <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
 	   <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
       </div>
-      
     </div>
   </div>
 </div>
@@ -96,7 +103,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <ul class="list-inline">
+        <ul class="list-inline"> 
           <li><i class="icon-facebook icon-2x"></i></li>
           <li><i class="icon-twitter icon-2x"></i></li>
           <li><i class="icon-google-plus icon-2x"></i></li>
@@ -113,6 +120,6 @@
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/validate_login.js"></script>
+    <!-- <script src="/js/validate_login.js"></script> -->
 	</body>
 </html>

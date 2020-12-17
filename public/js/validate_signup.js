@@ -19,94 +19,15 @@ let eightChar = document.querySelector(".eight-character");
 // let specialChar = document.querySelector(".one-special-char i");
 // let eightChar = document.querySelector(".eight-character i");
 
-
+console.log('hi');
 
 //Event Listener for validating inputs on submit of signup
-form.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    checkInputs();
-});
-//Event listener for password strength checking
-password.addEventListener('keyup',(e)=>{
-    e.preventDefault();
-    let pass = password.value;
-    checkStrength(pass);
-});
+// form.addEventListener('submit',(e)=>{
+//     e.preventDefault();
+//     checkInputs();
+// });
 
-function checkStrength(password){
-    let strength=0;
-
-    const result =document.querySelector(".popover-password p");
-
-// console.log(result);
-
-    //if contains lower and upper case
-    if(password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)){
-        strength += 1;
-        lowerUpperCase.style.color="#ffad00";
-    }else{
-        lowerUpperCase.style.color="white";
-    }
-
-    //if password has a number
-    if(password.match(/([0-9])/)){
-        strength += 1;
-        number.style.color="#ffad00";
-    }else{
-        number.style.color="white";
-    }
-
-    //if password has one special character
-    if(password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)){
-        strength += 1;
-        specialChar.style.color="#ffad00";
-    }else{
-        specialChar.style.color="white";
-    }
-        
-
-    if(password.length > 7){
-        strength += 1;
-        eightChar.style.color="#ffad00";
-    }else{
-        eightChar.style.color="white";
-    }
-    
-
-    if(strength == 0){
-        passwordStrength.style ='width:0%';
-        result.innerText="very poor";
-        result.style.color="#e3e7f1";
-    }
-    else if(strength == 2){
-        passwordStrength.classList.remove('progress-bar-warning');
-        passwordStrength.classList.remove('progress-bar-success');
-        passwordStrength.classList.add('progress-bar-danger');
-        passwordStrength.style ='width:10%';
-        result.innerText="poor";
-        result.style.color="#e90f10";
-    }
-    else if(strength == 3){
-        passwordStrength.classList.add('progress-bar-warning');
-        passwordStrength.classList.remove('progress-bar-success');
-        passwordStrength.classList.remove('progress-bar-danger');
-        passwordStrength.style ='width:60%';
-        result.innerText="medium";
-        result.style.color="#ffad00";
-    }
-    else if(strength == 4){
-        passwordStrength.classList.remove('progress-bar-warning');
-        passwordStrength.classList.add('progress-bar-success');
-        passwordStrength.classList.remove('progress-bar-danger');
-        passwordStrength.style ='width:100%';
-        result.innerText="strong";
-        result.style.color="#02b502";
-    }
-
-
-}
-
-function checkInputs(){
+function validate_signup(){  
     //get input values
     const firstnameValue = firstname.value.trim();
     const lastnameValue = lastname.value.trim(); 
@@ -186,6 +107,8 @@ function checkInputs(){
     // if(inputError===false){
     //     alert("SIGNUP PAGE - Validation Success");
     // }
+
+    return inputError;
 }
 
 function setErrorFor(input, message){
@@ -219,4 +142,88 @@ function isPasswordValid(password)
        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/.test(password);
     // return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
 }
+
+// //Event listener for password strength checking
+// password.addEventListener('keyup',(e)=>{
+//     e.preventDefault();
+//     let pass = password.value;
+//     checkStrength(pass);
+// });
+
+function checkStrength(){
+
+    let password_check  = document.getElementById("password");
+    let password = password_check.value;
+    let strength=0;
+
+    const result =document.querySelector(".popover-password p");
+
+// console.log(result);
+
+    //if contains lower and upper case
+    if(password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)){
+        strength += 1;
+        lowerUpperCase.style.color="#ffad00";
+    }else{
+        lowerUpperCase.style.color="white";
+    }
+
+    //if password has a number
+    if(password.match(/([0-9])/)){
+        strength += 1;
+        number.style.color="#ffad00";
+    }else{
+        number.style.color="white";
+    }
+
+    //if password has one special character
+    if(password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)){
+        strength += 1;
+        specialChar.style.color="#ffad00";
+    }else{
+        specialChar.style.color="white";
+    }
+        
+
+    if(password.length > 7){
+        strength += 1;
+        eightChar.style.color="#ffad00";
+    }else{
+        eightChar.style.color="white";
+    }
+    
+
+    if(strength == 0){
+        passwordStrength.style ='width:0%';
+        result.innerText="very poor";
+        result.style.color="#e3e7f1";
+    }
+    else if(strength == 2){
+        passwordStrength.classList.remove('progress-bar-warning');
+        passwordStrength.classList.remove('progress-bar-success');
+        passwordStrength.classList.add('progress-bar-danger');
+        passwordStrength.style ='width:10%';
+        result.innerText="poor";
+        result.style.color="#e90f10";
+    }
+    else if(strength == 3){
+        passwordStrength.classList.add('progress-bar-warning');
+        passwordStrength.classList.remove('progress-bar-success');
+        passwordStrength.classList.remove('progress-bar-danger');
+        passwordStrength.style ='width:60%';
+        result.innerText="medium";
+        result.style.color="#ffad00";
+    }
+    else if(strength == 4){
+        passwordStrength.classList.remove('progress-bar-warning');
+        passwordStrength.classList.add('progress-bar-success');
+        passwordStrength.classList.remove('progress-bar-danger');
+        passwordStrength.style ='width:100%';
+        result.innerText="strong";
+        result.style.color="#02b502";
+    }
+
+
+}
+
 

@@ -61,20 +61,20 @@
         <div class="box form-container">
           <h2 class="form-heading">ADD Book</h2>
           <hr>
-          <form class="form" id="form" action="" >
+          <form class="form" id="form" action="/admin/book_added" method="POST" enctype="multipart/form-data">
                 <div class="form_control">
                     <label for="">Book Title</label><sup>*</sup>
-                    <input type="text" placeholder="Enter Book Title" id="book-title" name="title" >
+                    <input type="text" placeholder="Enter Book Title" id="book-title" name="title" required>
                     <!-- <p>Error message</p> -->
                 </div>
                 <div class="form_control">
                     <label for="">Author Name</label><sup>*</sup>
-                    <input type="text" placeholder="Enter Author Name" id="author-name" name="author">
+                    <input type="text" placeholder="Enter Author Name" id="author-name" name="author" required>
                     <!-- <p>Error message</p> -->
                 </div>
                 <div class="form_control">
                     <label for="">Book Genre</label><sup>*</sup>
-                    <input type="text" placeholder="Enter Book Genre" id="book-genre" name="genre">
+                    <input type="text" placeholder="Enter Book Genre" id="book-genre" name="genre" required>
                     <!-- <p>Error message</p> -->
                 </div>
                 <br>
@@ -83,7 +83,7 @@
                     <hr>
                     <div class="mb-3">
                       <!-- <label class="form-label" for="">Book Cover Image</label><sup>*</sup> -->
-                      <input class="form-control" type="file" id="book-img" name="image">
+                      <input class="form-control" type="file" id="book-img" name="image" required>
                     </div>
                 </div><br>
                 <button class="btn btn-primary" type="submit">Submit</button>

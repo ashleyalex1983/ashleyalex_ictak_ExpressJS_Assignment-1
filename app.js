@@ -1,9 +1,28 @@
 const express = require("express");
+const mongoose = require("mongoose");
+// const db_url = 'mongodb://localhost:27017/ExpressJS_Library'
+const db_url = 'mongodb+srv://userone:userone@ictak-db-files.drcez.mongodb.net/LIBRARYAPP?retryWrites=true&w=majority'
 
 //init express
 const app = new express();
 
 const port = process.env.PORT || 5555;
+
+//Database connection
+mongoose.connect(db_url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+}, (error)=>{
+    if(!error)
+    {
+        console.log('Success - Database Connected.');
+    }
+    else{
+        console.log('Error - Unable to connect Database.')
+    }
+});
+
 
 //set the template engine
 app.set('view engine','ejs');
@@ -13,8 +32,9 @@ app.set('views','./src/views');
 //Embedding static files (images,css,js)
 app.use(express.static('./public'));
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended:true }));
+//accessing POST requests
+app.use(express.json());
+app.use(express.urlencoded({ extended:true }));
 
 //login route
 const login_nav =[
@@ -28,41 +48,45 @@ const signup_nav =[
                   ];
 const signupRouter = require('./src/routes/signupRoutes')(signup_nav);
 
-//admin route
+//admin and loggedinuser route
 const admin_nav =[
-    {link:'/admin'  ,name:'Home'},
-    {link:'/books'  ,name:'Books'},
-    {link:'/authors',name:'Authors'}
+    {link:'/admin'        ,name:'Admin-Home'},
+    {link:'/admin/books'  ,name:'Books'},
+    {link:'/admin/authors',name:'Authors'}
 ];
 const adminRouter = require('./src/routes/adminRoutes')(admin_nav);
 
-//book route
-const book_navbar = [
-    {link:'/books'          ,name:'Books'},
-    {link:'/admin/add_book' ,name:'Add New Book'}
+const loggedinuser_nav =[
+    {link:'/loggedin'        ,name:'Reader-Home'},
+    {link:'/loggedin/books'  ,name:'Books'},
+    {link:'/loggedin/authors',name:'Authors'}
 ];
-const booksRouter = require('./src/routes/bookRoutes')(book_navbar);
+const loggedinuserRouter = require('./src/routes/loggedinuserRoutes')(loggedinuser_nav);
 
-// author route
-const author_navbar = [
-    {link:'/authors'            ,name:'Authors'},
-    {link:'/admin/add_author'   ,name:'Add New Author'}
-  ];
-const authorsRouter = require('./src/routes/authorRoutes')(author_navbar);
+// //book route
+// const book_navbar = [
+//     {link:'/books'      ,name:'Books'}
+// ];
+// const booksRouter = require('./src/routes/bookRoutes')(book_navbar);
+
+// // author route
+// const author_navbar = [
+//     {link:'/authors'    ,name:'Authors'}
+//   ];
+// const authorsRouter = require('./src/routes/authorRoutes')(author_navbar);
 
 //redirect server to respective route handlers
 app.use('/login'    ,loginRouter);
 app.use('/signup'   ,signupRouter);
 app.use('/admin'    ,adminRouter);
-app.use('/books'    ,booksRouter);
-app.use('/authors'  ,authorsRouter);
+app.use('/loggedin' ,loggedinuserRouter);
+// app.use('/books'    ,booksRouter);
+// app.use('/authors'  ,authorsRouter);
 
 //For Homepage
 const nav =[
-    {link:'/books'  ,name:'Books'},    
-    {link:'/authors',name:'Authors'},
-    {link:'/login'  ,name:'Login'},
-    {link:'/signup' ,name:'Signup'}    
+    {link:'/login'  ,name:'Login | SignUp'}
+    // ,{link:'/signup' ,name:'Signup'}    
 ];
 
 var quotes =[
@@ -104,6 +128,13 @@ app.get('/',function(req,res){
 });
 
 
-app.listen(port,()=>{
-    console.log("Server Ready at "+ port);
+app.listen(port,(error)=>{
+    if(!error)
+    {
+        console.log("Server Ready at "+ port);
+    }
+    else{
+        console.log('Error Occurred');
+    }
+    
 });

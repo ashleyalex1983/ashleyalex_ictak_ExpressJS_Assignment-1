@@ -61,10 +61,10 @@
         <div class="box form-container">
             <h2 class="form-heading">ADD Author</h2>
             <hr>
-            <form class="form" id="form" action="" >
+            <form class="form" id="form" action="/admin/author_added" method="POST" enctype="multipart/form-data">
                   <div class="form_control">
                       <label for="">Author Name</label><sup>*</sup>
-                      <input type="text" placeholder="Enter Author Name" id="author-name" name="author" >
+                      <input type="text" placeholder="Enter Author Name" id="author-name" name="name" required>
                       <!-- <p>Error message</p> -->
                   </div>
                   <div class="form_control">
@@ -79,7 +79,7 @@
                 </div>
                   <div class="form_control">
                       <label for="">Author Genre</label>
-                      <input type="text" placeholder="Enter Genre" id="author-genre" name="genre">
+                      <input type="text" placeholder="Enter Genre" id="author-genre" name="genre" required>
                       <!-- <p>Error message</p> -->
                   </div>
                   <br>
@@ -88,7 +88,7 @@
                       <hr>
                       <div class="mb-3">
                         <!-- <label class="form-label" for="">Author Image</label><sup>*</sup> -->
-                        <input class="form-control" type="file" id="author-img" name="image">
+                        <input class="form-control" type="file" id="author-img" name="image" required>
                       </div>
                   </div>
                   <br>

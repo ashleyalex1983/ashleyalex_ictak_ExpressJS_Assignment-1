@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <!-- <meta http-equiv="content-type" content="text/html; charset=UTF-8"> -->
+    <meta http-equiv="Content-Type" content="application/json">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/images/logo/add-book.ico" type="image/x-icon">
+		<title><%=title%></title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="/css/styles.css" rel="stylesheet">
+	</head>
+	<body  style="background-color: rgba(143, 177, 252, 0.8);">
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/admin" class="navbar-brand">Admin-Home</a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      <%for(i=0;i<nav.length;i++){%>
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="<%=nav[i].link%>"><%=nav[i].name%></a>
+        </li>
+      </ul>
+      <%}%>
+      <ul class="nav navbar-right navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon icon-search"></i></a>
+          <ul class="dropdown-menu" style="padding:12px;">
+            <form class="form-inline" style="display: inline-flex;">
+              <button type="submit" class="btn btn-default pull-right"><i class="glyphicon icon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
+            </form>
+          </ul>
+        </li>
+          <li >
+            <a href="/" class="navbar-brand">LogOut</a>
+          </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+<div class="container" >
+  <div class="row g-3" style="align-content: center;">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"> 
+      <div class="form-panel" style="width: fit-content;max-width: 520px;">
+        <div class="box form-container">
+          <h2 class="form-heading">EDIT Book Details</h2>
+          <hr>
+          <form class="form" id="form" action="/admin/update_book/<%=id%>/book_edited" method="POST" enctype="multipart/form-data" >
+                <div class="form_control">
+                    <label for="">Book Title</label><sup>*</sup>
+                    <input type="text" placeholder="Enter Book Title" id="book-title" name="title" value="<%=book.book_title%>" required>
+                    <!-- <p>Error message</p> -->
+                </div>
+                <div class="form_control">
+                    <label for="">Author Name</label><sup>*</sup>
+                    <input type="text" placeholder="Enter Author Name" id="author-name" name="author" value="<%=book.book_author%>" required>
+                    <!-- <p>Error message</p> -->
+                </div>
+                <div class="form_control">
+                    <label for="">Book Genre</label><sup>*</sup>
+                    <input type="text" placeholder="Enter Book Genre" id="book-genre" name="genre" value="<%=book.book_genre%>" required>
+                    <!-- <p>Error message</p> -->
+                </div>
+                <br>
+                <div >
+                    <label for="">Book Cover Image</label><sup>*</sup>
+                    <hr>
+                    <div class="mb-3">
+                      <!-- <label class="form-label" for="">Book Cover Image</label><sup>*</sup> -->
+                      <input class="form-control" type="file" id="book-img" name="image" value="<%=book.book_image%>" required>
+                    </div>
+                </div><br>
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <br>
+          </form>
+        </div>
+      </div>
+    </div><!--/col-6-->    
+    <div class="col-md-4"></div>
+  </div>
+</div>
+                                                
+                                                                                
+<hr>
+
+<div class="container" id="footer">
+  <div class="row">
+    <div class="col col-sm-12">
+      
+      <h1>Follow Us</h1>
+      <div class="btn-group">
+       <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
+	   <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+	   <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="list-inline">
+          <li><i class="icon-facebook icon-2x"></i></li>
+          <li><i class="icon-twitter icon-2x"></i></li>
+          <li><i class="icon-google-plus icon-2x"></i></li>
+          <li><i class="icon-pinterest icon-2x"></i></li>
+        </ul>
+        
+      </div>
+      <div class="col-sm-6">
+          <p class="pull-right">Built with <i class="icon-heart-empty"></i> at <a href="http://www.bootply.com">Bootply</a></p>      
+      </div>
+    </div>
+  </div>
+</footer>
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- <script src="/js/validate_form.js"></script> -->
+	</body>
+</html>

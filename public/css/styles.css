@@ -272,7 +272,7 @@ a,a:hover {
   border-color: #e74c3c;
 }
 
-.form_control p{
+/* .form_control p{
   visibility: hidden;
   position: absolute;
 }
@@ -281,7 +281,7 @@ a,a:hover {
   visibility: visible;
   color:  #e74c3c;
   
-}
+} */
 
 .list-unstyled{
   margin-left: 20px;

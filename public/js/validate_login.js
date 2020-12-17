@@ -1,17 +1,33 @@
-const loginform     = document.getElementById("loginform");
-const loginpassword = document.getElementById("password");
-const loginusername = document.getElementById("username");
+// console.log('hi')
+
+// var submit = document.getElementById("submit-button").addEventListener("click", callback);
+
+// var loginform     = document.getElementById("loginform");
+// var loginpassword = document.getElementById("password");
+// var loginusername = document.getElementById("username");
 
 
-//Event Listener for validating inputs on submit of login
-loginform.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    checkLoginInputs();
-    // return;
-    
-});
+// function validate_login(){ 
+// console.log('Validate_login');
+//     var loginform     = document.getElementById("loginform");
+   
 
-function checkLoginInputs(){
+//     //Event Listener for validating inputs on submit of login
+//     loginform.addEventListener('submit',(e)=>{
+//         e.preventDefault();
+//         checkLoginInputs();
+//         return;
+//     });
+//     return true;
+// }
+
+
+
+function validate_login(){
+    // console.log("Check inputs");
+    var loginpassword = document.getElementById("password");
+    var loginusername = document.getElementById("username");
+
     const usernameValue = loginusername.value.trim();    
     const loginpasswordValue = loginpassword.value.trim(); 
 
@@ -39,7 +55,7 @@ function checkLoginInputs(){
     // if(loginInputError===false){
     //     alert("LOGIN PAGE - Validation Success");
     // }
-    return ;
+    return loginInputError;
 }
 
 function setErrorFor(input, message){
@@ -50,10 +66,14 @@ function setErrorFor(input, message){
     ptag.innerText = message;
     //add error class
     formControl.className = "form_control error";
+
+    return;
 }
 
 function setSuccessFor(input){
     const formControl = input.parentElement;
     //add success class
     formControl.className="form_control success";
+    
+    return;
 }

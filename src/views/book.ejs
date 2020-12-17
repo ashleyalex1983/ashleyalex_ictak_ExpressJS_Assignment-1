@@ -24,7 +24,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">Home</a>
+      <a href="<%=user_link%>" class="navbar-brand">
+        <%if(user_link === '/admin') {%>
+          Admin-HOME
+         <%} else {%> Reader-HOME 
+          <%}%>
+      </a>
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <%for(i=0;i<nav.length;i++){%>
@@ -90,27 +95,45 @@
           <div class="row">    
             <br>
             <div class="col-md-2 col-sm-3 text-center">
-              <a class="story-title" href="#"><img alt="" src="/images/books/<%=book.img%>" style="width:150px;height:150px" class="img-circle"></a>
+              <a class="story-title" href="#"><img alt="" src="data:image/<%=book.book_image.contentType%>;base64,<%=book.book_image.data.toString('base64')%>" style="width:150px;height:150px" class="img-circle"></a>
             </div>
             <div class="col-md-10 col-sm-9">
-              <h3><%=book.title%></h3>
+              <h3><%=book.book_title%></h3>
               <div class="row">
                 <div class="col-xs-9">
-                  <h4><span class="label label-default"><%=book.author%></span></h4><h4>
-                  <small style="font-family:courier,'new courier';" class="text-muted"><%=book.genre%>
+                  <h4><span class="label label-default"><%=book.book_author%></span></h4><h4>
+                  <small style="font-family:courier,'new courier';" class="text-muted"><%=book.book_genre%>
                   </h4>
                 </div>
-                <div class="col-xs-3"></div>
+                <div class="col-xs-3">
+                  
+                </div>
+
               </div>
               <!-- <br><br> -->
             </div>
           </div>
-          <!-- <hr> -->
-         
+          <hr>
+          <div class="row">
+            <div class="col-md-2">
+              <%if(user_link === '/admin') {%>
+                <button class="btn btn-warning edit-book" style="font-family: Arial, Helvetica, sans-serif;" href="#" id="<%=book._id%>">EDIT THIS BOOK</button>
+              <%}%>          
+            </div>
+            <div class="col-md-2">
+              <%if(user_link === '/admin') {%>
+                <button class="btn btn-danger delete-book" style="font-family: Arial, Helvetica, sans-serif;" href="#" id="<%=book._id%>">DELETE THIS BOOK</button>
+              <%}%>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+          </div>
           <!--/stories-->
           
           
-          <a href="/books" class="btn btn-primary pull-right btnNext">List All Books <i class="glyphicon icon-chevron-right"></i></a>
+          <a href="<%=user_link%>/books" class="btn btn-primary pull-right btnNext" style="font-size: large;font-family: Arial, Helvetica, sans-serif;">List All Books <i class="glyphicon icon-chevron-right"></i></a>
         
           
         </div>
@@ -161,6 +184,7 @@
 </footer>
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/book_main.js"></script>
 	</body>
 </html>
